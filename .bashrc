@@ -126,6 +126,9 @@ alias shell="ssh wymanl@shell.onid.oregonstate.edu"
 alias access="ssh wymanl@access.engr.oregonstate.edu"
 alias betty="~/githubs/betty/main.rb"
 alias sleep="sudo pm-suspend"
+alias irc="ssh root@104.236.135.124"
+alias prune="git branch --merged | grep -v '\*' | grep -v master | grep -v dev | xargs -n 1 git branch -d"
+alias gitupdate="git fetch origin && git merge origin/master && prune"
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 

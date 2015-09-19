@@ -18,9 +18,6 @@ for_window [title="lucy@lulubelle"] border 1pixel
 #Window borders
 #hide_edge_borders both
 
-#Shutdown
-bindsym $mod+Shift+
-
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -146,21 +143,21 @@ mode "resize" {
 # finds out, if available)
 bar {
 	position bottom
-	status_command py3status -c ~/.i3/i3status.conf -i ~/.i3/
+	status_command i3status
 }
 ##Start network manager applet and sound applet
 exec --no-startup-id nm-applet
 exec --no-startup-id gnome-sound-applet
 #Open firefox
 bindsym $mod+z exec firefox
-#Lock screen
-bindsym $mod+o exec i3lock -d -i ~/Downloads/physicsistheoretical.png
 #Feh screensaver
-exec_always --no-startup-id sh ~/.fehbg
+exec_always --no-startup-id feh --randomize --bg-max --no-fehbg ~/.fehbg/*
+exec_always --no-startup-id amixer -c 1 set Headphone 50% unmute
 
-bindsym XF86AudioLowerVolume exec amixer set Master 5-
-bindsym XF86AudioRaiseVolume exec amixer set Master 5+
-# Broken :(
-# bindsym XF86AudioMute exec amixer sset Master toggle
+bindsym XF86AudioLowerVolume exec amixer -c 1 set Master 5-
+bindsym XF86AudioRaiseVolume exec amixer -c 1 set Master 5+
+bindsym XF86AudioMute exec amixer -c 1 set Master toggle
+bindsym XF86MonBrightnessUp exec xbacklight -inc 20
+bindsym XF86MonBrightnessDown exec xbacklight -dec 20
 
-
+bindsym $mod+o exec i3lock
