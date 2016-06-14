@@ -124,13 +124,21 @@ fi
 ##Aliases for ssh
 alias shell="ssh wymanl@shell.onid.oregonstate.edu"
 alias access="ssh wymanl@access.engr.oregonstate.edu"
+alias os2="ssh wymanl@os-class.engr.oregonstate.edu"
 alias betty="~/githubs/betty/main.rb"
 alias sleep="sudo pm-suspend"
 alias irc="ssh root@104.236.135.124"
 alias prune="git branch --merged | grep -v '\*' | grep -v master | grep -v dev | xargs -n 1 git branch -d"
 alias gitupdate="git fetch origin && git merge origin/master && prune"
+alias sassformat="sass-convert --from scss --to scss --in-place"
+alias sysadmin="ssh -i ~/.ssh/openstack_id_rsa centos@140.211.168.85"
+alias sp="ssh -i ~/.ssh/sp_id_rsa root@192.241.245.196"
+alias gc="gcalcli"
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+
+# Add GPG key
+export GPGKEY=667B2369
