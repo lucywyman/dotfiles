@@ -1,0 +1,167 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/jaagr/polybar
+;
+;   The README contains alot of information
+;
+;==========================================================
+; ~/.config/polybar/config
+
+[colors]
+bg = #1F1F1F
+fg = #FFFFFF
+fg-alt = #A9ABB0
+
+acolor = #FFFFFF
+curgent = #EF5350
+coccupied = #42A5F5
+
+shade1 = #880E4F
+shade2 = #AD1457
+shade3 = #C2185B
+shade4 = #D81B60
+shade5 = #E91E63
+shade6 = #EC407A
+shade7 = #F06292
+shade8 = #F48FB1
+ashade8 = #2C2C2C
+
+## Material Colors
+red = #e53935
+pink = #d81b60
+purple = #8e24aa
+deep-purple = #5e35b1
+indigo = #3949ab
+blue = #1e88e5
+light-blue = #039be5
+cyan = #00acc1
+teal = #00897b
+green = #43a047
+light-green = #7cb342
+lime = #c0ca33
+yellow = #fdd835
+amber = #ffb300
+orange = #fb8c00
+deep-orange = #f4511e
+brown = #6d4c41
+grey = #757575
+blue-gray = #546e7a
+
+;==========================================================
+
+[bar/lucy]
+bottom = true
+width = 100%
+height = 50
+radius = 6.0
+fixed-center = false
+background = ${colors.bg}
+foreground = ${colors.fg}
+font-0 = DejaVuSans:pixelsize=14;1
+font-1 = FontAwesome:pixelsize=15;3"
+modules-left = i3
+modules-center = 
+modules-right = spotify cpu wlan battery date
+tray-position = right
+tray-padding = 2
+tray-background = ${colors.shade3}
+tray-scale = 1.0
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+[module/i3]
+type = internal/i3
+format = <label-state>
+index-sort = true
+wrapping-scroll = false
+format-background = ${colors.shade2}
+label-state-background = ${colors.shade2}
+
+; focused = Active workspace on focused monitor
+label-focused = 
+label-focused-padding = 2
+label-focused-background = ${colors.shade5}
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused = 
+label-unfocused-padding = 2
+label-unfocused-background = ${colors.shade2}
+
+; urgent = Workspace with urgency hint set
+label-urgent = 
+label-urgent-padding = 2
+label-urgent-background = ${colors.curgent}
+
+; Separator in between workspaces
+;label-separator = |
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = " "
+format-background = ${colors.shade8}
+label = %percentage:2%%
+
+[module/wlan]
+type = internal/network
+interface = wlp3s0
+interval = 3.0
+format-connected-prefix = " "
+format-connected = <label-connected>
+format-connected-background = ${colors.shade7}
+label-connected = %essid%
+format-disconnected-prefix = " "
+format-disconnected = <label-disconnected>
+format-disconnected-background = ${colors.shade7}
+label-disconnected = Disconnected
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = AC
+full-at = 99
+format-charging = <label-charging>
+format-discharging = <label-discharging>
+format-charging-prefix = " "
+format-charging-background = ${colors.shade6}
+format-discharging-prefix = " "
+format-discharging-background = ${colors.shade6}
+
+[module/date]
+type = internal/date
+interval = 5
+date = "%B %d, %Y"
+time = %H:%M
+label = %date% %time%
+format-background = ${colors.shade5}
+format-prefix = " "
+
+[module/spotify]
+type = custom/script
+interval = 1
+format-prefix = "♫ "
+format = <label>
+exec = python /home/lucy/.config/polybar/modules/spotify_status.py -t 30 -f '{artist}: {song}'
+format-background = #1db954
+
+[settings]
+screenchange-reload = true
+format-padding = 2
+
+[global/wm]
+;margin-top = 5
+;margin-bottom = 5
+
+; vim:ft=dosini

@@ -13,7 +13,6 @@ set $mod Mod4
 
 #Disable titlebar for terminals
 for_window [title="/bin/bash"] border 1pixel
-for_window [title="lucy@lulubelle"] border 1pixel
 
 #Window borders
 #hide_edge_borders both
@@ -141,23 +140,24 @@ mode "resize" {
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar {
-	position bottom
-	status_command i3status
-}
-##Start network manager applet and sound applet
-exec --no-startup-id nm-applet
-exec --no-startup-id gnome-sound-applet
+# bar {
+#   position bottom
+#     font pango:DejaVu Sans Mono 15
+#     status_command i3status
+# }
+exec_always --no-startup-id /home/lucy/.config/polybar/launch.sh
+
 #Open firefox
 bindsym $mod+z exec firefox
 #Feh screensaver
 exec_always --no-startup-id feh --randomize --bg-max --no-fehbg ~/.fehbg/*
-exec_always --no-startup-id amixer -c 1 set Headphone 50% unmute
 
-bindsym XF86AudioLowerVolume exec amixer -c 1 set Master 5-
-bindsym XF86AudioRaiseVolume exec amixer -c 1 set Master 5+
-bindsym XF86AudioMute exec amixer -c 1 set Master toggle
-bindsym XF86MonBrightnessUp exec xbacklight -inc 20
-bindsym XF86MonBrightnessDown exec xbacklight -dec 20
-
+bindsym XF86AudioLowerVolume exec amixer set Master 5-
+bindsym XF86AudioRaiseVolume exec amixer set Master 5+
+bindsym XF86AudioMute exec amixer set Master toggle
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10
 bindsym $mod+o exec i3lock
+
+##Start network manager applet
+exec_always --no-startup-id nm-applet
