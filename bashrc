@@ -66,9 +66,9 @@ __git_ps1 ()
 }
 
 if [ "$color_prompt" = yes ]; then
-  PS1='${debian_chroot:+($debian_chroot)}\[\033[00;31m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(__git_ps1)\$ '
+  PS1='${debian_chroot:+($debian_chroot)}\[\e[38;5;161m\]\u \[\e[38;5;208m\]\w\[\e[38;5;227m\]$(__git_ps1) \$ \[\e[97m\]'
 else
-  PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+  PS1='${debian_chroot:+($debian_chroot)}\u \w \$ '
 fi
 unset color_prompt force_color_prompt
 
@@ -128,8 +128,11 @@ man() {
 
 ##Aliases for ssh
 alias sleep="sudo pm-suspend"
+alias irc="ssh root@104.236.135.124"
 alias be="bundle exec"
 alias bb="bundle exec bolt"
 alias doc="docker-compose"
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+complete -C /home/lucy/bin/vault vault

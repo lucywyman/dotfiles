@@ -15,7 +15,6 @@
 ;   The README contains alot of information
 ;
 ;==========================================================
-; ~/.config/polybar/config
 
 [colors]
 bg = #1F1F1F
@@ -132,11 +131,16 @@ type = internal/battery
 battery = BAT0
 adapter = AC
 full-at = 99
+format-full = <label-full>
+format-full-prefix = " "
+format-full-background = ${colors.shade6}
+
 format-charging = <label-charging>
-format-discharging = <label-discharging>
 format-charging-prefix = " "
 format-charging-background = ${colors.shade6}
-format-discharging-prefix = " "
+
+format-discharging = <label-discharging>
+format-discharging-prefix = "  "
 format-discharging-background = ${colors.shade6}
 
 [module/date]
@@ -153,7 +157,7 @@ type = custom/script
 interval = 1
 format-prefix = "♫ "
 format = <label>
-exec = python /home/lucy/.config/polybar/modules/spotify_status.py -t 30 -f '{artist}: {song}'
+exec = python /home/l/.config/polybar/modules/spotify_status.py -t 30 -f '{artist}: {song}'
 format-background = #1db954
 
 [settings]

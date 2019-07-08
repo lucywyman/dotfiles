@@ -19,3 +19,4 @@ set runtimepath+=~/.vim/bundle/jshint2.vim/
 " Winter theme 'industry'
 "
 set t_Co=256
+set clipboard^=unnamed
